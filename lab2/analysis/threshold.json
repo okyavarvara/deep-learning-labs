@@ -1,0 +1,9 @@
+{
+  "t_star": 0.031193897128105164,
+  "validation_cost": 194,
+  "validation_roc_auc": 0.97331771637308,
+  "n_validation": 56961,
+  "n_unique_scores": 55983,
+  "n_candidates": 55984,
+  "n_repeated_scores": 978
+}

@@ -1,0 +1,4 @@
+set,tables_equal,t_fast,t_brute_force,t_expected,C_fast,C_brute_force,C_expected,passed
+A,True,0.4,0.4,0.4,2,2,2,True
+B,True,+inf,+inf,+inf,0,0,0,True
+C,True,0.8,0.8,0.8,10,10,10,True
