@@ -1,0 +1,177 @@
+{
+  "regime": "frozen",
+  "seed": 2,
+  "settings": {
+    "transforms": {
+      "train": [
+        "RandomResizedCrop(160, scale=(0.7, 1.0))",
+        "RandomHorizontalFlip()",
+        "ToTensor()",
+        "Normalize(mean, std)"
+      ],
+      "validation_test": [
+        "Resize((160, 160))",
+        "ToTensor()",
+        "Normalize(mean, std)"
+      ],
+      "img_size": 160,
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "image_open": "PIL.Image.open(...).convert(\"RGB\")"
+    },
+    "model": {
+      "arch": "torchvision.models.resnet18",
+      "weights": "ResNet18_Weights.IMAGENET1K_V1",
+      "fc": "torch.nn.Linear(512, 6), стандартна ініціалізація",
+      "bn_momentum": 0.1,
+      "bn_eps": 1e-05,
+      "dtype": "float32",
+      "total_params": 11179590,
+      "trainable_params": 3078
+    },
+    "regime": {
+      "name": "frozen",
+      "trainable_modules": [
+        "fc"
+      ],
+      "eval_modules_during_training": [
+        "conv1",
+        "bn1",
+        "layer1",
+        "layer2",
+        "layer3",
+        "layer4"
+      ],
+      "param_groups": [
+        {
+          "modules": [
+            "fc"
+          ],
+          "lr": 0.003,
+          "n_params": 3078
+        }
+      ]
+    },
+    "optimizer": {
+      "name": "torch.optim.AdamW",
+      "weight_decay": 0.0001,
+      "defaults_after_construction": {
+        "lr": 0.001,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08,
+        "weight_decay": 0.0001,
+        "amsgrad": false,
+        "maximize": false,
+        "foreach": null,
+        "capturable": false,
+        "differentiable": false,
+        "fused": null,
+        "decoupled_weight_decay": true
+      }
+    },
+    "loss": "CrossEntropyLoss(), середнє за пакетом",
+    "loaders": {
+      "train": {
+        "batch_size": 32,
+        "shuffle": true,
+        "drop_last": false,
+        "num_workers": 0,
+        "generator": null,
+        "sampler": null
+      },
+      "validation": {
+        "batch_size": 64,
+        "shuffle": false,
+        "num_workers": 0
+      }
+    },
+    "budget": {
+      "epochs": 8,
+      "steps_per_epoch": 38,
+      "total_steps": 304
+    },
+    "not_used": [
+      "lr scheduler",
+      "gradient clipping",
+      "mixed precision",
+      "label smoothing",
+      "class weights",
+      "early stopping",
+      "checkpoint selection by validation"
+    ],
+    "metric": "sklearn.metrics.f1_score(average='macro') на validation після епохи 8"
+  },
+  "optimizer_steps": 304,
+  "git": {
+    "commit": "4596bf92fe45301381a5d76141e953626fe72fad",
+    "uncommitted_changes": false
+  },
+  "split_sha256": "d3a611aec41f6e335ab58287f10a443f3e0e35aa9adfefae662d48b15af567f9",
+  "versions": {
+    "python": "3.12.14",
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "numpy": "2.5.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "device": "CPU: Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6463065687815348,
+      "val_macro_f1": 0.8752375661812426
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.27919596393903096,
+      "val_macro_f1": 0.8762466309729765
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.23946861336628597,
+      "val_macro_f1": 0.8739697554231557
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.2155674409866333,
+      "val_macro_f1": 0.8911195999061713
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.20166385213534038,
+      "val_macro_f1": 0.8865182966052753
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.19217360337575276,
+      "val_macro_f1": 0.8770273927138906
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.19823383510112763,
+      "val_macro_f1": 0.8801630821284593
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.18484779427448908,
+      "val_macro_f1": 0.8813500703928338
+    }
+  ],
+  "final": {
+    "train_loss": 0.18484779427448908,
+    "val_macro_f1": 0.8813500703928338
+  },
+  "train_time_sec": 135.30608969996683,
+  "total_time_sec_with_validation": 1576.5350045000669
+}
