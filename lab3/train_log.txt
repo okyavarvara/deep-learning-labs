@@ -1,0 +1,93 @@
+Пристрій: CPU: Intel(R) Xeon(R) Processor @ 2.30GHz; torch 2.15.0+cu132
+split.csv: 4200 рядків, sha256 = d3a611aec41f6e335ab58287f10a443f3e0e35aa9adfefae662d48b15af567f9
+== Перевірка 1: поділ ==
+   усі 18 клітинок + підсумки збігаються: True; частини не перетинаються: True
+== Перевірка 1: пакет після перетворень ==
+== Перевірка 1: початкова втрата L0 ==
+   scratch: L0 = 2.1344 (ln 6 = 1.7918)
+   frozen: L0 = 2.2155 (ln 6 = 1.7918)
+== Перевірка 2: параметри і групи оптимізатора ==
+   scratch: всього 11179590, requires_grad 11179590, групи [(11179590, 0.003)], збігається: True, заморожених в оптимізаторі: 0
+   frozen: всього 11179590, requires_grad 3078, групи [(3078, 0.003)], збігається: True, заморожених в оптимізаторі: 0
+   unfreeze: всього 11179590, requires_grad 8396806, групи [(3078, 0.003), (8393728, 0.0003)], збігається: True, заморожених в оптимізаторі: 0
+== Перевірка 2: що змінюється під час навчання (set_train_mode) ==
+   frozen: усі модулі як очікувано: True
+   unfreeze: усі модулі як очікувано: True
+== Дослід із навмисною помилкою (frozen, model.train()) ==
+   Прогноз (записано до запуску): у frozen з model.train() параметри кістяка НЕ зміняться (requires_grad=False, в оптимізаторі їх немає), але ковзні статистики running_mean, running_var і лічильник num_batches_tracked УСІХ BN-шарів кістяка оновляться, бо BN у режимі train оновлює їх незалежно від requires_grad (з momentum=0.1 за 5 кроків ~41% старої статистики замінюється статистикою нових даних). Голова fc навчатиметься як і раніше. На кривій втрати на train це майже не буде помітно: у режимі train BN нормує за статистикою самого пакета, тому втрата на train лишається схожою на правильну; наслідок проявиться лише в eval(), де використовуються вже зміщені ковзні статистики.
+   conv1   params_changed=False stats_changed=None
+   bn1     params_changed=False stats_changed=True
+   layer1  params_changed=False stats_changed=True
+   layer2  params_changed=False stats_changed=True
+   layer3  params_changed=False stats_changed=True
+   layer4  params_changed=False stats_changed=True
+   fc      params_changed=True stats_changed=None
+   layer1.0.bn1: max|d running_mean| = 8.858e-02, max|d running_var| = 1.484e-01
+   втрати 5 кроків (помилка): [2.1946, 1.7303, 1.9906, 1.7364, 1.4441]
+   втрати 5 кроків (правильно): [2.2155, 1.6835, 1.7928, 1.4501, 1.2067]
+[scratch seed 1] старт на cpu
+[scratch seed 1] епоха 1/8: train loss 1.7023, val macro-F1 0.3342, 49 c
+[scratch seed 1] епоха 2/8: train loss 1.2469, val macro-F1 0.3458, 99 c
+[scratch seed 1] епоха 3/8: train loss 1.1406, val macro-F1 0.4805, 148 c
+[scratch seed 1] епоха 4/8: train loss 1.1564, val macro-F1 0.4528, 196 c
+[scratch seed 1] епоха 5/8: train loss 1.1041, val macro-F1 0.4739, 244 c
+[scratch seed 1] епоха 6/8: train loss 1.0558, val macro-F1 0.5786, 294 c
+[scratch seed 1] епоха 7/8: train loss 1.0323, val macro-F1 0.5904, 344 c
+[scratch seed 1] епоха 8/8: train loss 0.9490, val macro-F1 0.5671, 393 c
+[frozen seed 1] старт на cpu
+[frozen seed 1] епоха 1/8: train loss 0.6453, val macro-F1 0.8799, 28 c
+[frozen seed 1] епоха 2/8: train loss 0.2840, val macro-F1 0.8793, 53 c
+[frozen seed 1] епоха 3/8: train loss 0.2521, val macro-F1 0.8870, 79 c
+[frozen seed 1] епоха 4/8: train loss 0.2226, val macro-F1 0.8664, 106 c
+[frozen seed 1] епоха 5/8: train loss 0.2138, val macro-F1 0.8854, 132 c
+[frozen seed 1] епоха 6/8: train loss 0.2013, val macro-F1 0.8846, 158 c
+[frozen seed 1] епоха 7/8: train loss 0.1754, val macro-F1 0.8837, 184 c
+[frozen seed 1] епоха 8/8: train loss 0.1759, val macro-F1 0.8829, 209 c
+[frozen seed 2] старт на cpu
+[frozen seed 2] епоха 1/8: train loss 0.6463, val macro-F1 0.8752, 28 c
+[frozen seed 2] епоха 2/8: train loss 0.2792, val macro-F1 0.8762, 53 c
+[frozen seed 2] епоха 3/8: train loss 0.2395, val macro-F1 0.8740, 78 c
+[frozen seed 2] епоха 4/8: train loss 0.2156, val macro-F1 0.8911, 104 c
+[frozen seed 2] епоха 5/8: train loss 0.2017, val macro-F1 0.8865, 130 c
+[frozen seed 2] епоха 6/8: train loss 0.1922, val macro-F1 0.8770, 156 c
+[frozen seed 2] епоха 7/8: train loss 0.1982, val macro-F1 0.8802, 182 c
+[frozen seed 2] епоха 8/8: train loss 0.1848, val macro-F1 0.8814, 207 c
+[frozen seed 3] старт на cpu
+[frozen seed 3] епоха 1/8: train loss 0.6483, val macro-F1 0.8813, 27 c
+[frozen seed 3] епоха 2/8: train loss 0.2922, val macro-F1 0.8850, 53 c
+[frozen seed 3] епоха 3/8: train loss 0.2326, val macro-F1 0.8754, 77 c
+[frozen seed 3] епоха 4/8: train loss 0.2248, val macro-F1 0.8776, 103 c
+[frozen seed 3] епоха 5/8: train loss 0.2041, val macro-F1 0.8863, 129 c
+[frozen seed 3] епоха 6/8: train loss 0.1892, val macro-F1 0.8396, 154 c
+[frozen seed 3] епоха 7/8: train loss 0.1944, val macro-F1 0.8849, 179 c
+[frozen seed 3] епоха 8/8: train loss 0.1788, val macro-F1 0.8864, 204 c
+[unfreeze seed 1] старт на cpu
+[unfreeze seed 1] епоха 1/8: train loss 0.5549, val macro-F1 0.8939, 31 c
+[unfreeze seed 1] епоха 2/8: train loss 0.1692, val macro-F1 0.9029, 61 c
+[unfreeze seed 1] епоха 3/8: train loss 0.1390, val macro-F1 0.8877, 91 c
+[unfreeze seed 1] епоха 4/8: train loss 0.1392, val macro-F1 0.8773, 122 c
+[unfreeze seed 1] епоха 5/8: train loss 0.1292, val macro-F1 0.8949, 152 c
+[unfreeze seed 1] епоха 6/8: train loss 0.0681, val macro-F1 0.8861, 183 c
+[unfreeze seed 1] епоха 7/8: train loss 0.0742, val macro-F1 0.8810, 213 c
+[unfreeze seed 1] епоха 8/8: train loss 0.0772, val macro-F1 0.8605, 243 c
+[unfreeze seed 2] старт на cpu
+[unfreeze seed 2] епоха 1/8: train loss 0.5300, val macro-F1 0.8792, 32 c
+[unfreeze seed 2] епоха 2/8: train loss 0.1863, val macro-F1 0.9068, 62 c
+[unfreeze seed 2] епоха 3/8: train loss 0.1483, val macro-F1 0.8956, 93 c
+[unfreeze seed 2] епоха 4/8: train loss 0.1069, val macro-F1 0.8823, 123 c
+[unfreeze seed 2] епоха 5/8: train loss 0.1052, val macro-F1 0.8850, 155 c
+[unfreeze seed 2] епоха 6/8: train loss 0.0957, val macro-F1 0.8818, 186 c
+[unfreeze seed 2] епоха 7/8: train loss 0.0657, val macro-F1 0.8942, 216 c
+[unfreeze seed 2] епоха 8/8: train loss 0.0640, val macro-F1 0.8927, 246 c
+[unfreeze seed 3] старт на cpu
+[unfreeze seed 3] епоха 1/8: train loss 0.5103, val macro-F1 0.7952, 32 c
+[unfreeze seed 3] епоха 2/8: train loss 0.2111, val macro-F1 0.8730, 62 c
+[unfreeze seed 3] епоха 3/8: train loss 0.1260, val macro-F1 0.8956, 92 c
+[unfreeze seed 3] епоха 4/8: train loss 0.1214, val macro-F1 0.8880, 123 c
+[unfreeze seed 3] епоха 5/8: train loss 0.0837, val macro-F1 0.9038, 154 c
+[unfreeze seed 3] епоха 6/8: train loss 0.0648, val macro-F1 0.8916, 184 c
+[unfreeze seed 3] епоха 7/8: train loss 0.0968, val macro-F1 0.8807, 214 c
+[unfreeze seed 3] епоха 8/8: train loss 0.0854, val macro-F1 0.9015, 245 c
+Середні validation macro-F1 за режимами: {'scratch': 0.5670885857988605, 'frozen': 0.8835646092852786, 'unfreeze': 0.8848983965475073}
+Вибрано: unfreeze, зерно 3
+lab3_model.pt збережено. Тест не використовувався; далі: analyze.py

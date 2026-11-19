@@ -1,0 +1,182 @@
+{
+  "regime": "scratch",
+  "seed": 1,
+  "settings": {
+    "transforms": {
+      "train": [
+        "RandomResizedCrop(160, scale=(0.7, 1.0))",
+        "RandomHorizontalFlip()",
+        "ToTensor()",
+        "Normalize(mean, std)"
+      ],
+      "validation_test": [
+        "Resize((160, 160))",
+        "ToTensor()",
+        "Normalize(mean, std)"
+      ],
+      "img_size": 160,
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "image_open": "PIL.Image.open(...).convert(\"RGB\")"
+    },
+    "model": {
+      "arch": "torchvision.models.resnet18",
+      "weights": null,
+      "fc": "torch.nn.Linear(512, 6), стандартна ініціалізація",
+      "bn_momentum": 0.1,
+      "bn_eps": 1e-05,
+      "dtype": "float32",
+      "total_params": 11179590,
+      "trainable_params": 11179590
+    },
+    "regime": {
+      "name": "scratch",
+      "trainable_modules": [
+        "conv1",
+        "bn1",
+        "layer1",
+        "layer2",
+        "layer3",
+        "layer4",
+        "fc"
+      ],
+      "eval_modules_during_training": [],
+      "param_groups": [
+        {
+          "modules": [
+            "conv1",
+            "bn1",
+            "layer1",
+            "layer2",
+            "layer3",
+            "layer4",
+            "fc"
+          ],
+          "lr": 0.003,
+          "n_params": 11179590
+        }
+      ]
+    },
+    "optimizer": {
+      "name": "torch.optim.AdamW",
+      "weight_decay": 0.0001,
+      "defaults_after_construction": {
+        "lr": 0.001,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08,
+        "weight_decay": 0.0001,
+        "amsgrad": false,
+        "maximize": false,
+        "foreach": null,
+        "capturable": false,
+        "differentiable": false,
+        "fused": null,
+        "decoupled_weight_decay": true
+      }
+    },
+    "loss": "CrossEntropyLoss(), середнє за пакетом",
+    "loaders": {
+      "train": {
+        "batch_size": 32,
+        "shuffle": true,
+        "drop_last": false,
+        "num_workers": 0,
+        "generator": null,
+        "sampler": null
+      },
+      "validation": {
+        "batch_size": 64,
+        "shuffle": false,
+        "num_workers": 0
+      }
+    },
+    "budget": {
+      "epochs": 8,
+      "steps_per_epoch": 38,
+      "total_steps": 304
+    },
+    "not_used": [
+      "lr scheduler",
+      "gradient clipping",
+      "mixed precision",
+      "label smoothing",
+      "class weights",
+      "early stopping",
+      "checkpoint selection by validation"
+    ],
+    "metric": "sklearn.metrics.f1_score(average='macro') на validation після епохи 8"
+  },
+  "optimizer_steps": 304,
+  "git": {
+    "commit": "4596bf92fe45301381a5d76141e953626fe72fad",
+    "uncommitted_changes": false
+  },
+  "split_sha256": "d3a611aec41f6e335ab58287f10a443f3e0e35aa9adfefae662d48b15af567f9",
+  "versions": {
+    "python": "3.12.14",
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "numpy": "2.5.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "device": "CPU: Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.7263842948277792,
+      "val_macro_f1": 0.3565070293081765
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.2343671989440919,
+      "val_macro_f1": 0.44306395234480345
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.1592148049672444,
+      "val_macro_f1": 0.5026958658802002
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.1276260280609132,
+      "val_macro_f1": 0.5752839303031679
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.1138536818822224,
+      "val_macro_f1": 0.5121046659739166
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.0778133980433147,
+      "val_macro_f1": 0.4826824591668897
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1.0521388069788615,
+      "val_macro_f1": 0.5210479394579166
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.958148074944814,
+      "val_macro_f1": 0.589985064026027
+    }
+  ],
+  "final": {
+    "train_loss": 0.958148074944814,
+    "val_macro_f1": 0.589985064026027
+  },
+  "train_time_sec": 899.8406336997868,
+  "total_time_sec_with_validation": 1043.148759100004
+}

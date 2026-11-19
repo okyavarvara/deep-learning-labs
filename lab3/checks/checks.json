@@ -1,0 +1,546 @@
+{
+  "split": {
+    "cells": [
+      {
+        "cls": "buildings",
+        "part": "train",
+        "got": [
+          200,
+          1996761
+        ],
+        "expected": [
+          200,
+          1996761
+        ],
+        "ok": true
+      },
+      {
+        "cls": "forest",
+        "part": "train",
+        "got": [
+          200,
+          2032625
+        ],
+        "expected": [
+          200,
+          2032625
+        ],
+        "ok": true
+      },
+      {
+        "cls": "glacier",
+        "part": "train",
+        "got": [
+          200,
+          2183923
+        ],
+        "expected": [
+          200,
+          2183923
+        ],
+        "ok": true
+      },
+      {
+        "cls": "mountain",
+        "part": "train",
+        "got": [
+          200,
+          1950345
+        ],
+        "expected": [
+          200,
+          1950345
+        ],
+        "ok": true
+      },
+      {
+        "cls": "sea",
+        "part": "train",
+        "got": [
+          200,
+          1987613
+        ],
+        "expected": [
+          200,
+          1987613
+        ],
+        "ok": true
+      },
+      {
+        "cls": "street",
+        "part": "train",
+        "got": [
+          200,
+          1841817
+        ],
+        "expected": [
+          200,
+          1841817
+        ],
+        "ok": true
+      },
+      {
+        "cls": "buildings",
+        "part": "validation",
+        "got": [
+          218,
+          4837323
+        ],
+        "expected": [
+          218,
+          4837323
+        ],
+        "ok": true
+      },
+      {
+        "cls": "forest",
+        "part": "validation",
+        "got": [
+          237,
+          5276962
+        ],
+        "expected": [
+          237,
+          5276962
+        ],
+        "ok": true
+      },
+      {
+        "cls": "glacier",
+        "part": "validation",
+        "got": [
+          276,
+          6135652
+        ],
+        "expected": [
+          276,
+          6135652
+        ],
+        "ok": true
+      },
+      {
+        "cls": "mountain",
+        "part": "validation",
+        "got": [
+          262,
+          5789535
+        ],
+        "expected": [
+          262,
+          5789535
+        ],
+        "ok": true
+      },
+      {
+        "cls": "sea",
+        "part": "validation",
+        "got": [
+          255,
+          5655068
+        ],
+        "expected": [
+          255,
+          5655068
+        ],
+        "ok": true
+      },
+      {
+        "cls": "street",
+        "part": "validation",
+        "got": [
+          250,
+          5541845
+        ],
+        "expected": [
+          250,
+          5541845
+        ],
+        "ok": true
+      },
+      {
+        "cls": "buildings",
+        "part": "test",
+        "got": [
+          219,
+          4837559
+        ],
+        "expected": [
+          219,
+          4837559
+        ],
+        "ok": true
+      },
+      {
+        "cls": "forest",
+        "part": "test",
+        "got": [
+          237,
+          5291326
+        ],
+        "expected": [
+          237,
+          5291326
+        ],
+        "ok": true
+      },
+      {
+        "cls": "glacier",
+        "part": "test",
+        "got": [
+          277,
+          6157250
+        ],
+        "expected": [
+          277,
+          6157250
+        ],
+        "ok": true
+      },
+      {
+        "cls": "mountain",
+        "part": "test",
+        "got": [
+          263,
+          5849765
+        ],
+        "expected": [
+          263,
+          5849765
+        ],
+        "ok": true
+      },
+      {
+        "cls": "sea",
+        "part": "test",
+        "got": [
+          255,
+          5668011
+        ],
+        "expected": [
+          255,
+          5668011
+        ],
+        "ok": true
+      },
+      {
+        "cls": "street",
+        "part": "test",
+        "got": [
+          251,
+          5547533
+        ],
+        "expected": [
+          251,
+          5547533
+        ],
+        "ok": true
+      }
+    ],
+    "totals": {
+      "train": {
+        "got": [
+          1200,
+          11993084
+        ],
+        "expected": [
+          1200,
+          11993084
+        ],
+        "ok": true
+      },
+      "validation": {
+        "got": [
+          1498,
+          33236385
+        ],
+        "expected": [
+          1498,
+          33236385
+        ],
+        "ok": true
+      },
+      "test": {
+        "got": [
+          1502,
+          33351444
+        ],
+        "expected": [
+          1502,
+          33351444
+        ],
+        "ok": true
+      }
+    },
+    "all_match": true,
+    "disjoint": true,
+    "n_rows": 4200,
+    "n_unique_names": 4200
+  },
+  "initial_loss": {
+    "ln6": 1.791759469228055,
+    "scratch": 2.1344404220581055,
+    "frozen": 2.215514898300171
+  },
+  "params": {
+    "scratch": {
+      "regime": "scratch",
+      "total": 11179590,
+      "trainable": 11179590,
+      "groups": [
+        {
+          "n_params": 11179590,
+          "lr": 0.003,
+          "weight_decay": 0.0001
+        }
+      ],
+      "expected_total": 11179590,
+      "expected_trainable": 11179590,
+      "counts_match": true,
+      "frozen_params_in_optimizer": [],
+      "trainable_params_missing_in_optimizer": [],
+      "groups_match": true
+    },
+    "frozen": {
+      "regime": "frozen",
+      "total": 11179590,
+      "trainable": 3078,
+      "groups": [
+        {
+          "n_params": 3078,
+          "lr": 0.003,
+          "weight_decay": 0.0001
+        }
+      ],
+      "expected_total": 11179590,
+      "expected_trainable": 3078,
+      "counts_match": true,
+      "frozen_params_in_optimizer": [],
+      "trainable_params_missing_in_optimizer": [],
+      "groups_match": true
+    },
+    "unfreeze": {
+      "regime": "unfreeze",
+      "total": 11179590,
+      "trainable": 8396806,
+      "groups": [
+        {
+          "n_params": 3078,
+          "lr": 0.003,
+          "weight_decay": 0.0001
+        },
+        {
+          "n_params": 8393728,
+          "lr": 0.0003,
+          "weight_decay": 0.0001
+        }
+      ],
+      "expected_total": 11179590,
+      "expected_trainable": 8396806,
+      "counts_match": true,
+      "frozen_params_in_optimizer": [],
+      "trainable_params_missing_in_optimizer": [],
+      "groups_match": true
+    }
+  },
+  "state_change": {
+    "frozen": {
+      "regime": "frozen",
+      "correct_mode": true,
+      "rows": [
+        {
+          "module": "conv1",
+          "params_changed": false,
+          "stats_changed": null,
+          "has_bn": false,
+          "as_expected": true
+        },
+        {
+          "module": "bn1",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer1",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer2",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer3",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer4",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "fc",
+          "params_changed": true,
+          "stats_changed": null,
+          "has_bn": false,
+          "as_expected": true
+        }
+      ],
+      "all_as_expected": true,
+      "losses": [
+        2.215514898300171,
+        1.6834864616394043,
+        1.792789340019226,
+        1.4501128196716309,
+        1.2066601514816284
+      ],
+      "layer1_0_bn1_max_abs_d_running_mean": 0.0,
+      "layer1_0_bn1_max_abs_d_running_var": 0.0,
+      "layer1_0_bn1_num_batches_tracked": 0
+    },
+    "unfreeze": {
+      "regime": "unfreeze",
+      "correct_mode": true,
+      "rows": [
+        {
+          "module": "conv1",
+          "params_changed": false,
+          "stats_changed": null,
+          "has_bn": false,
+          "as_expected": true
+        },
+        {
+          "module": "bn1",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer1",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer2",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer3",
+          "params_changed": false,
+          "stats_changed": false,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "layer4",
+          "params_changed": true,
+          "stats_changed": true,
+          "has_bn": true,
+          "as_expected": true
+        },
+        {
+          "module": "fc",
+          "params_changed": true,
+          "stats_changed": null,
+          "has_bn": false,
+          "as_expected": true
+        }
+      ],
+      "all_as_expected": true,
+      "losses": [
+        2.2069661617279053,
+        1.376380205154419,
+        1.4591021537780762,
+        0.9190632104873657,
+        0.546107828617096
+      ],
+      "layer1_0_bn1_max_abs_d_running_mean": 0.0,
+      "layer1_0_bn1_max_abs_d_running_var": 0.0,
+      "layer1_0_bn1_num_batches_tracked": 0
+    }
+  },
+  "bn_prediction": "Прогноз (записано до запуску): у frozen з model.train() параметри кістяка НЕ зміняться (requires_grad=False, в оптимізаторі їх немає), але ковзні статистики running_mean, running_var і лічильник num_batches_tracked УСІХ BN-шарів кістяка оновляться, бо BN у режимі train оновлює їх незалежно від requires_grad (з momentum=0.1 за 5 кроків ~41% старої статистики замінюється статистикою нових даних). Голова fc навчатиметься як і раніше. На кривій втрати на train це майже не буде помітно: у режимі train BN нормує за статистикою самого пакета, тому втрата на train лишається схожою на правильну; наслідок проявиться лише в eval(), де використовуються вже зміщені ковзні статистики.",
+  "bn_bug": {
+    "regime": "frozen",
+    "correct_mode": false,
+    "rows": [
+      {
+        "module": "conv1",
+        "params_changed": false,
+        "stats_changed": null,
+        "has_bn": false,
+        "as_expected": true
+      },
+      {
+        "module": "bn1",
+        "params_changed": false,
+        "stats_changed": true,
+        "has_bn": true,
+        "as_expected": false
+      },
+      {
+        "module": "layer1",
+        "params_changed": false,
+        "stats_changed": true,
+        "has_bn": true,
+        "as_expected": false
+      },
+      {
+        "module": "layer2",
+        "params_changed": false,
+        "stats_changed": true,
+        "has_bn": true,
+        "as_expected": false
+      },
+      {
+        "module": "layer3",
+        "params_changed": false,
+        "stats_changed": true,
+        "has_bn": true,
+        "as_expected": false
+      },
+      {
+        "module": "layer4",
+        "params_changed": false,
+        "stats_changed": true,
+        "has_bn": true,
+        "as_expected": false
+      },
+      {
+        "module": "fc",
+        "params_changed": true,
+        "stats_changed": null,
+        "has_bn": false,
+        "as_expected": true
+      }
+    ],
+    "all_as_expected": false,
+    "losses": [
+      2.194581985473633,
+      1.730296015739441,
+      1.9906069040298462,
+      1.7364449501037598,
+      1.4440677165985107
+    ],
+    "layer1_0_bn1_max_abs_d_running_mean": 0.08858203887939453,
+    "layer1_0_bn1_max_abs_d_running_var": 0.14839696884155273,
+    "layer1_0_bn1_num_batches_tracked": 5
+  }
+}
