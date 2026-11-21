@@ -1,0 +1,18 @@
+[project]
+name = "lab4"
+version = "0.1.0"
+description = "ЛР4: FP32 проти INT8 (ONNX Runtime, статична квантизація після навчання)"
+requires-python = "==3.12.*"
+dependencies = [
+    "torch==2.15.0",
+    "torchvision==0.29.2",
+    "numpy==2.5.5",
+    "scikit-learn==1.9.1",
+    "pillow==13.0.0",
+    "onnx==1.21.0",
+    "onnxruntime==1.29.0",
+    "py-cpuinfo==9.0.0",
+]
+
+[tool.uv]
+package = false
